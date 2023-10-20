@@ -8,20 +8,20 @@ import '../fonts.css'
 import { useMutation } from "react-query";
 import { SubmitQuery } from '../api-client/client';
 import { ResponseModel } from '../model';
-import { makeStyles } from '@mui/styles';
+// import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles(() => ({
-    customPlaceholder: {
-      color: 'red', // Set the color you want for the placeholder text
-      fontStyle: 'italic', // You can add other CSS properties as needed
-      fontFamily: 'Fira Code'
-    },
-  }));
+// const useStyles = makeStyles(() => ({
+//     customPlaceholder: {
+//       color: 'red', // Set the color you want for the placeholder text
+//       fontStyle: 'italic', // You can add other CSS properties as needed
+//       fontFamily: 'Fira Code'
+//     },
+//   }));
 
 
 export default function CustomGrid() 
 {
-    const classes = useStyles();
+    // const classes = useStyles();
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [searchResults, setSearchResults] = useState<ResponseModel[]>([]);
     const [inputs,setInputs]=useState({
@@ -93,9 +93,9 @@ setSearchResults([...searchResults,response])
               <SearchIcon />
             </IconButton>
           ),
-          classes:{
-            input:classes.customPlaceholder
-          }
+          // classes:{
+          //   input:classes.customPlaceholder
+          // }
         }}
       />
 </Grid>
