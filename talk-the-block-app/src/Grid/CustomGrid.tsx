@@ -22,17 +22,10 @@ export default function CustomGrid()
     // const classes = useStyles();
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [searchResults, setSearchResults] = useState<ResponseModel[]>([]);
-    const [inputs,setInputs]=useState({
-        searchQuery:"",
+    // const [inputs,setInputs]=useState({
+    //     searchQuery:"",
         
-      })
-
-      const handleInputChange=(e: { target: { name: any; value: any; }; })=>{
-        setInputs({
-            ...inputs,
-            [e.target.name]:e.target.value
-        })
-    }
+    //   })
 
   const handleSearch = async () => {
     // Implement your search logic here
