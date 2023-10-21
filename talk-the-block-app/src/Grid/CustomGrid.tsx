@@ -1,5 +1,3 @@
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { TextField, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -109,7 +107,7 @@ setSearchResults([...searchResults,response])
       </Grid>
     ))}</Grid>        
 
-<Grid item xs={2}></Grid><Grid item xs={8}></Grid><Grid item xs={2}><div><a href='https://github.com/talkdablock' target='_blank'>What we do?</a></div></Grid>        
+<Grid item xs={2}></Grid><Grid item xs={8}></Grid><Grid item xs={2}><div><a href='https://github.com/talkdablock' target='_blank' rel="noreferrer">What we do?</a></div></Grid>        
 
     </Grid>
   </div>

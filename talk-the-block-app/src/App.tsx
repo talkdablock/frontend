@@ -1,8 +1,5 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import './fonts.css'
-import SearchPage from './Search/SearchPage';
 import CustomGrid from './Grid/CustomGrid';
 import { QueryClient, QueryClientProvider } from 'react-query';
 const queryClient = new QueryClient();

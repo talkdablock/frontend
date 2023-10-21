@@ -1,6 +1,4 @@
-import { RequestModel, ResponseModel } from "../model";
-import axiosInstance from "./axiosInstance";
-import { URLs } from "./config";
+import { RequestModel } from "../model";
 
 export async function SubmitQuery(
     request: RequestModel
