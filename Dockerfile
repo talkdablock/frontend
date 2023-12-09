@@ -1,12 +1,20 @@
+# pull official base image
 FROM node:20-alpine
 
-WORKDIR /react-docker-example/
+# set working directory
+WORKDIR /app
 
-COPY public/ /react-docker-example/public
-COPY src/ /react-docker-example/src
-COPY package.json /react-docker-example/
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-RUN npm install
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
 
-EXPOSE 3000
+# add app
+COPY . ./
+
+# start app
 CMD ["npm", "start"]
