@@ -23,7 +23,6 @@ export default function CustomGrid()
     SubmitQuery,
     {
       onSuccess: (r: ResponseModel) => {
-        
         if(r && r.response.length > 0){
           setSearchResults([...r.response])
         }
