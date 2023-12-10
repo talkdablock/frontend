@@ -1,7 +1,7 @@
 export interface ResponseModel{
     chain_id:number;
     query:string;
-    response:string;
+    response:string[];
 }
 
 export interface RequestModel{

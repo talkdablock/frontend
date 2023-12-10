@@ -38,8 +38,7 @@ export default function CustomGrid()
     {
       onSuccess: (response: ResponseModel) => {
         if(response && response.response.length > 0){
-
-setSearchResults([...searchResults,response])
+          setSearchResults([...searchResults,response])
         }
       },
     }
