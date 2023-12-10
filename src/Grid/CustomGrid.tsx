@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid';
 import { TextField, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../fonts.css'
 import { useMutation } from "react-query";
 import { SubmitQuery } from '../api-client/client';
@@ -22,15 +22,29 @@ export default function CustomGrid()
     // const classes = useStyles();
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [searchResults, setSearchResults] = useState<string[]>([]);
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
     // const [inputs,setInputs]=useState({
     //     searchQuery:"",
         
     //   })
 
+
+    useEffect(() => {
+      if (formSubmitted) {
+        setSearchResults([]);
+        setFormSubmitted(false); // Reset formSubmitted after clearing searchResults
+      }
+     }, [formSubmitted,searchResults,searchQuery]);
+
+
     const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
+      setFormSubmitted(true);
+
       // Implement your search logic here
       // For now, let's use sample data
+      // setSearchResults([]);
       searchQuery && submitQuery({address:searchQuery})
     };
 
@@ -41,7 +55,7 @@ export default function CustomGrid()
         console.log("response: ", r);
         
         if(r && r.response.length > 0){
-          setSearchResults([...searchResults,...r.response])
+          setSearchResults([...r.response])
         }
       },
     }
@@ -105,7 +119,7 @@ export default function CustomGrid()
  <Grid item xs={12}>
       <Grid container spacing={2}>
         {/* <Grid item xs={12}><div style={{fontWeight:"bold"}}>{adj}</div></Grid> */}
-        <Grid item xs={12}><div>{searchResults.join(" ")}</div> </Grid>
+        <Grid item xs={12}><div>{searchResults.join(", ")}</div></Grid>
       </Grid>
     </Grid>
 
