@@ -39,11 +39,13 @@ export default function CustomGrid()
         alignItems: "center",
         justifyContent: "center",
         margin: "0",
-        height: "100vh"
+        height: "100vh",
+        backgroundColor:"#83C9F4",
+        boxShadow: "10px 10px 8px #888888"
     }}
     >
     <Grid container spacing={2}>
-<Grid item xs={2}></Grid><Grid item xs={8}><div style={{fontWeight:"bolder", fontSize:"xxx-large"}}>Talk the Block</div></Grid><Grid item xs={2}></Grid>        
+<Grid item xs={2}></Grid><Grid item xs={8}><div style={{fontWeight:"bolder", fontSize:"xxx-large", textShadow:"2px 2px"}}>Talk the Block</div></Grid><Grid item xs={2}></Grid>        
 <Grid item xs={2}></Grid><Grid item xs={8}></Grid><Grid item xs={2}></Grid>        
 
 <Grid item xs={2}></Grid>
@@ -61,6 +63,8 @@ export default function CustomGrid()
             fontFamily: 'Fira Code',
             padding:"5px",
             margin:"auto",
+            backgroundColor:"#FFFFFF",
+            boxShadow: "10px 10px 8px #888888",
           },
           endAdornment: (
             <IconButton type="submit">
