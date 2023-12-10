@@ -5,6 +5,5 @@ export interface ResponseModel{
 }
 
 export interface RequestModel{
-    chain_id:number;
-    query:string;
+    address:string;
 }

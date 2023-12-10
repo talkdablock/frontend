@@ -30,7 +30,7 @@ export default function CustomGrid()
   const handleSearch = async () => {
     // Implement your search logic here
     // For now, let's use sample data
-    submitQuery({chain_id:784,query:searchQuery})
+    submitQuery({address:searchQuery})
   };
 
   const { mutate: submitQuery } = useMutation(
@@ -75,7 +75,7 @@ setSearchResults([...searchResults,response])
           // outline: "none"
 
         }}
-        placeholder="You can talk to Sui"
+        placeholder="Ask me anything about Ethereum Network!"
         fullWidth
         onChange={(e) => setSearchQuery(e.target.value)}
         InputProps={{
