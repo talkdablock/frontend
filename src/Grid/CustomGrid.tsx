@@ -21,24 +21,27 @@ export default function CustomGrid()
 {
     // const classes = useStyles();
     const [searchQuery, setSearchQuery] = useState<string>("");
-    const [searchResults, setSearchResults] = useState<ResponseModel[]>([]);
+    const [searchResults, setSearchResults] = useState<string[]>([]);
     // const [inputs,setInputs]=useState({
     //     searchQuery:"",
         
     //   })
 
-  const handleSearch = async () => {
-    // Implement your search logic here
-    // For now, let's use sample data
-    submitQuery({address:searchQuery})
-  };
+    const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      // Implement your search logic here
+      // For now, let's use sample data
+      searchQuery && submitQuery({address:searchQuery})
+    };
 
   const { mutate: submitQuery } = useMutation(
     SubmitQuery,
     {
-      onSuccess: (response: ResponseModel) => {
-        if(response && response.response.length > 0){
-          setSearchResults([...searchResults,response])
+      onSuccess: (r: ResponseModel) => {
+        console.log("response: ", r);
+        
+        if(r && r.response.length > 0){
+          setSearchResults([...searchResults,...r.response])
         }
       },
     }
@@ -62,42 +65,49 @@ export default function CustomGrid()
 
 <Grid item xs={2}></Grid>
 <Grid item xs={8}>
+
+<form onSubmit={handleSearch}>
 <TextField
-        variant="standard"
-        style={{
-          borderRadius:"24px", 
-          border:"1px solid #ccc",
-          padding:"5px",
-          margin:"auto",
-  fontFamily: 'Fira Code'
+        variant="outlined"
+  //       style={{
+  //         borderRadius:"24px", 
+  //         border:"1px solid #ccc",
+  //         padding:"5px",
+  //         margin:"auto",
+  // fontFamily: 'Fira Code'
 
-          // outline: "none"
+  //         // outline: "none"
 
-        }}
+  //       }}
         placeholder="Ask me anything about Ethereum Network!"
         fullWidth
         onChange={(e) => setSearchQuery(e.target.value)}
         InputProps={{
+          style: {
+            borderRadius: "30px",
+            fontFamily: 'Fira Code',
+            padding:"5px",
+            margin:"auto",
+          },
           endAdornment: (
-            <IconButton onClick={handleSearch}>
+            <IconButton type="submit">
               <SearchIcon />
             </IconButton>
           ),
-          // classes:{
-          //   input:classes.customPlaceholder
-          // }
         }}
       />
+</form>
+
 </Grid>
 <Grid item xs={2}></Grid><Grid item xs={8}></Grid><Grid item xs={2}></Grid>        
 
 <Grid item xs={2}></Grid>
-<Grid item xs={12}>{searchResults.map((res:ResponseModel) => (
+ <Grid item xs={12}>
       <Grid container spacing={2}>
-        <Grid item xs={12}><div style={{fontWeight:"bold"}}>{res.query}</div></Grid>
-        <Grid item xs={12}><div>{res.response}</div> </Grid>
+        {/* <Grid item xs={12}><div style={{fontWeight:"bold"}}>{adj}</div></Grid> */}
+        <Grid item xs={12}><div>{searchResults.join(" ")}</div> </Grid>
       </Grid>
-    ))}</Grid>        
+    </Grid>
 
 <Grid item xs={2}></Grid><Grid item xs={8}></Grid><Grid item xs={2}><div><a href='https://github.com/talkdablock' target='_blank' rel="noreferrer">What we do?</a></div></Grid>        
 
