@@ -10,8 +10,8 @@ export async function SubmitQuery(
     //   }
     // );
 
-    // const response = await fetch('https://tdb-backend.up.railway.app/query', {
-    const response = await fetch('http://localhost:3001/query', {
+    const response = await fetch('https://tdb-backend.up.railway.app/query', {
+    // const response = await fetch('http://localhost:3001/query', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
