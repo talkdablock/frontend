@@ -16,9 +16,12 @@ export default function CustomGrid()
       event.preventDefault()
       // Implement your search logic here
       // For now, let's use sample data
-      setIsLoading(true)
-      setSearchResults([])
-      searchQuery && submitQuery({address:searchQuery})
+      if(searchQuery){
+        setIsLoading(true)
+        setSearchResults([])
+        submitQuery({address:searchQuery})
+      }
+     
     };
 
   const { mutate: submitQuery } = useMutation(
@@ -27,8 +30,8 @@ export default function CustomGrid()
       onSuccess: (r: ResponseModel) => {
         if(r && r.response.length > 0){
           setSearchResults([...r.response])
-          setIsLoading(false)
         }
+        setIsLoading(false)
       },
     }
   );
