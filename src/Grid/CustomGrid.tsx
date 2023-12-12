@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Grid';
-import { TextField, IconButton } from '@mui/material';
+import { TextField, IconButton, CircularProgress } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import '../fonts.css'
@@ -11,11 +11,13 @@ export default function CustomGrid()
 {
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [searchResults, setSearchResults] = useState<string[]>([]);
-
+    const [isLoading, setIsLoading] = useState(false);
     const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
       // Implement your search logic here
       // For now, let's use sample data
+      setIsLoading(true)
+      setSearchResults([])
       searchQuery && submitQuery({address:searchQuery})
     };
 
@@ -25,6 +27,7 @@ export default function CustomGrid()
       onSuccess: (r: ResponseModel) => {
         if(r && r.response.length > 0){
           setSearchResults([...r.response])
+          setIsLoading(false)
         }
       },
     }
@@ -81,6 +84,8 @@ export default function CustomGrid()
 <Grid item xs={2}></Grid>
  <Grid item xs={12}>
       <Grid container spacing={2}>
+      
+      <Grid item xs={12}><div>{isLoading && <CircularProgress />}</div></Grid>
         <Grid item xs={12}><div>{searchResults.join(", ")}</div></Grid>
       </Grid>
     </Grid>
